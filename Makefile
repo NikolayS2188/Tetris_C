@@ -86,18 +86,18 @@ $(DIR_GCOV_RES)/gcov_test: $(DIR_SRC_TEST)/s21_test.c $(DIR_SRC_LOG)/fsm.c
 ALL_SRC_FILES = $(shell find . -name "*.c")
 
 check_code:
-	if [ ! -f ../materials/linters/.clang-format ]; then \
+	if [ ! -f ./materials/linters/.clang-format ]; then \
 		echo "Error clang-format: config file .clang-format not found"; \
 	else \
-		clang-format -n -style=file:../materials/linters/.clang-format $(ALL_SRC_FILES) inc/*.h; \
+		clang-format -n -style=file:./materials/linters/.clang-format $(ALL_SRC_FILES) inc/*.h; \
 	fi
 	cppcheck -I inc --enable=all --check-level=exhaustive --suppress=missingIncludeSystem $(ALL_SRC_FILES) inc/*.h
 
 stylize_code:
-	@if [ ! -f ../materials/linters/.clang-format ]; then \
+	@if [ ! -f ./materials/linters/.clang-format ]; then \
 		echo "Error clang-format: file .clang-format not found"; \
 	else \
-		clang-format -i -style=file:../materials/linters/.clang-format $(ALL_SRC_FILES) inc/*.h; \
+		clang-format -i -style=file:./materials/linters/.clang-format $(ALL_SRC_FILES) inc/*.h; \
 	fi
 
 DEBUG_FLAGS = -fsanitize=address -fsanitize=undefined -fsanitize=unreachable
